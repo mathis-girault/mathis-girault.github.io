@@ -25,18 +25,25 @@
 
   <body class="no-margin">
     <!-- Gestion du menu -->
-    <div id="menu">
-      <h3>Marqueurs visibles :</h3>
-      <div class="menu-item-container">
-        <input type="radio" name="mode" id="stage" value="stage" checked />
-        <label for="stage">Stage</label>
-      </div>
+    <nav id="menu-container">
+      <div id="menu">
+        <h3>Marqueurs visibles :</h3>
+        <div class="menu-item-container">
+          <input type="radio" name="mode" id="stage" value="stage" checked />
+          <label for="stage">Stage</label>
+        </div>
 
-      <div class="menu-item-container">
-        <input type="radio" name="mode" id="cesure" value="cesure" />
-        <label for="cesure">Cesure</label>
+        <div class="menu-item-container">
+          <input type="radio" name="mode" id="cesure" value="cesure" />
+          <label for="cesure">Cesure</label>
+        </div>
       </div>
-    </div>
+      <div id="menu-helper">
+        <p id="menu-helper-text">
+          Cliquez sur un marqueur pour voir la liste des noms !
+        </p>
+      </div>
+    </nav>
 
     <!-- Gestion de la carte -->
     <div id="map-container" class="selected">
