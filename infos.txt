@@ -1,0 +1,12 @@
+### Liste des informations qui seront affichées sur la carte
+
+# -> 'stage' correspond à la période de cet été, 'cesure' correspond au prochain semestre
+
+# -> # Format a respecter
+# -> Il peut y avoir des espcaes pas de soucis, juste gardez bien les ':' et le '[stage/cesure]'
+# [Ton blaze] : [stage/cesure] : [La ville et pays]
+
+Mathis : stage : Grenoble, France
+Mathis : cesure : Munich, Allemagne
+Luca : stage : Grenoble, France
+Luca : cesure : Grenoble, France

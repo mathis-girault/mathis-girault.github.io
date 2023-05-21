@@ -1,0 +1,76 @@
+/* ======================================================
+                    Pour la carte
+====================================================== */
+
+html,
+body,
+#map-container,
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  padding: 0;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.leaflet-popup-content {
+  margin: 0;
+  max-width: 180px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.leaflet-popup.stage .leaflet-popup-content-wrapper,
+.leaflet-popup.stage .leaflet-popup-tip {
+  background-color: rgb(196, 131, 131);
+}
+
+.leaflet-popup.cesure .leaflet-popup-content-wrapper,
+.leaflet-popup.cesure .leaflet-popup-tip {
+  background-color: rgb(147, 180, 229);
+}
+
+.leaflet-popup h3 {
+  margin: 10px 0 0 0;
+}
+
+.leaflet-popup p.popup-desc {
+  margin: 10px 0 0 0;
+}
+
+/* ======================================================
+                    Pour le menu
+====================================================== */
+
+#menu {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 601;
+  top: 0;
+  left: 0;
+  background-color: white;
+  padding: 10px;
+  padding-bottom: 5px;
+  border-width: 0 1px 1px 0;
+  border-style: solid;
+  border-color: black;
+  border-bottom-right-radius: 5px;
+}
+
+#menu h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.menu-item-container {
+    margin-bottom: 5px;
+}
