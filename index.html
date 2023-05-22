@@ -17,6 +17,11 @@
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
     <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 
+    <!-- Import de la base de donnée -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <!-- <script type="module" src="database.js"></script> -->
+
     <!-- My page -->
     <script type="module" src="index.js"></script>
     <link rel="styleSheet" type="text/css" href="index.css" />
@@ -25,29 +30,93 @@
 
   <body class="no-margin">
     <!-- Gestion du menu -->
-    <nav id="menu-container">
-      <div id="menu">
-        <h3>Marqueurs visibles :</h3>
-        <div class="menu-item-container">
-          <input type="radio" name="mode" id="stage" value="stage" checked />
-          <label for="stage">Stage</label>
-        </div>
+    <nav id="navigation">
+      <div id="menu-container">
+        <div id="menu">
+          <h3>Marqueurs visibles :</h3>
+          <div class="menu-item-container">
+            <input type="radio" name="mode" id="stage" value="stage" checked />
+            <label for="stage">Stage</label>
+          </div>
 
-        <div class="menu-item-container">
-          <input type="radio" name="mode" id="cesure" value="cesure" />
-          <label for="cesure">Cesure</label>
+          <div class="menu-item-container">
+            <input type="radio" name="mode" id="cesure" value="cesure" />
+            <label for="cesure">Cesure</label>
+          </div>
+        </div>
+        <div id="menu-helper">
+          <p id="menu-helper-text">
+            Cliquez sur un marqueur pour voir la liste des noms !
+          </p>
         </div>
       </div>
-      <div id="menu-helper">
-        <p id="menu-helper-text">
-          Cliquez sur un marqueur pour voir la liste des noms !
-        </p>
-      </div>
+
+      <input
+        type="button"
+        id="add-user"
+        class="menu-button"
+        title="Ajoutez votre marqueur"
+      />
     </nav>
 
     <!-- Gestion de la carte -->
-    <div id="map-container" class="selected">
+    <div id="map-container">
       <div id="map"></div>
+    </div>
+
+    <!-- Formulaire ajout nouvel utilisateur -->
+    <div id="form-container">
+      <form id="add-user-form">
+        <h3 id="form-title">Ajoutez votre marqueur</h3>
+
+        <div class="form-group">
+          <label for="name">Ton blaze :</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="city">La ville :</label>
+          <input type="text" id="city" name="city" required />
+        </div>
+
+        <div class="form-group">
+          <label for="is-stage">Pour quelle période :</label>
+          <div id="is-stage">
+            <div class="form-radio-stage">
+              <input
+                type="radio"
+                id="stage"
+                name="isStage"
+                value="stage"
+                required
+              />
+              <label for="stage">Stage</label>
+            </div>
+            <div class="form-radio-stage">
+              <input
+                type="radio"
+                id="cesure"
+                name="isStage"
+                value="cesure"
+                required
+              />
+              <label for="cesure">Césure</label>
+            </div>
+          </div>
+        </div>
+
+        <div id="form-submit">
+          <input
+            type="button"
+            id="annuler"
+            class="form-button"
+            value="Annuler"
+          />
+          <button type="submit" class="form-button" id="add-user-submit">
+            Ajouter
+          </button>
+        </div>
+      </form>
     </div>
   </body>
 </html>

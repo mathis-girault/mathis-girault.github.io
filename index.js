@@ -1,25 +1,24 @@
 import * as mapFunctions from "./map.js";
-import loadFile from "./parser.js";
+import * as databaseFunctions from "./database.js";
 
 window.addEventListener("DOMContentLoaded", () => {
+  // Listen for clicks on buttons
+  document.getElementById("add-user").onclick = () => {
+    document.getElementById("add-user-form").classList.add("selected");
+  };
+  document.getElementById("annuler").onclick = () => {
+    document.getElementById("add-user-form").classList.remove("selected");
+  };
+  document.getElementById("add-user-submit").onclick = (event) => {
+    handleSendForm(event);
+  };
+
+  // Initialize map and retreive data
   mapFunctions.initMap().then(() => {
-    loadFile()
-      .then((result) => addAllMarkers(result))
-      .catch((error) => console.log("Error:", error));
+    databaseFunctions.initDB();
+    initMenuEvents();
   });
 });
-
-// Function that uses parsed infos to create markers
-function addAllMarkers(parsedInfos) {
-  parsedInfos.forEach((person) => {
-    // Adding the marker for this person
-    mapFunctions.getPosFromAdresse(person.city).then((pos) => {
-      mapFunctions.addAndPushMarker(pos, person);
-    });
-  });
-
-  initMenuEvents();
-}
 
 // Function to init the listeners for the menu items
 function initMenuEvents() {
@@ -41,4 +40,35 @@ function initMenuEvents() {
   });
 
   stageRadio.dispatchEvent(new Event("change"));
+}
+
+function handleSendForm(event) {
+  const nameInput = document.getElementById("name");
+  const cityInput = document.getElementById("city");
+  const isStageInput = document.querySelector('input[name="isStage"]:checked');
+
+  // Check if the form inputs are valid
+  if (nameInput.checkValidity() && cityInput.checkValidity() && isStageInput) {
+    event.preventDefault(); // Prevent form submission
+
+    // Add the user to the database
+    databaseFunctions.addUser(
+      nameInput.value.trim(),
+      cityInput.value.trim(),
+      isStageInput.value === "stage"
+    );
+
+    // Clear the form fields with delay
+    setTimeout(() => {
+      nameInput.value = "";
+      cityInput.value = "";
+      isStageInput.checked = false;
+    }, 100);
+
+    // Close the form
+    document.getElementById("add-user-form").classList.remove("selected");
+  } else {
+    // Handle invalid form inputs (display error messages, etc.)
+    console.log("Invalid form inputs");
+  }
 }

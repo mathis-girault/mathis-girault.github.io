@@ -9,16 +9,11 @@ class Point {
 }
 
 // Icon des marqueurs par defaut
-const markerStageIcon = L.icon({
-  iconUrl: "images/marker_red.png",
-  iconSize: [15, 22],
-  iconAnchor: [11, 22],
-});
-const markerCesureIcon = L.icon({
-  iconUrl: "images/marker_blue.png",
-  iconSize: [15, 22],
-  iconAnchor: [11, 22],
-});
+const iconOptions = {
+  iconSize: [20, 30],
+  iconAnchor: [11, 30],
+  popupAnchor: [0, -15],
+};
 
 // Permet de retenir les marqueurs pour les cleans plus tard
 let dictStageMarkers = {};
@@ -45,8 +40,15 @@ function getMap(p, z) {
  * @returns le marqueur
  */
 function addMarker(pos, group) {
+  const iconUrl = group ? "images/marker_red.png" : "images/marker_blue.png";
+
   const marker = L.marker([pos.latitude, pos.longitude], {
-    icon: group ? markerStageIcon : markerCesureIcon,
+    icon: L.divIcon({
+      className: "custom-marker",
+      html: `<img src="${iconUrl}" width="${iconOptions.iconSize[0]}" height="${iconOptions.iconSize[1]}"/>
+      <div class="marker-number"></div>`,
+      iconAnchor: iconOptions.iconAnchor,
+    }),
   });
 
   if (group) {
@@ -59,7 +61,8 @@ function addMarker(pos, group) {
 }
 
 // Ajoute un marqueur sur la page et le met dans la liste des marqueurs
-export function addAndPushMarker(pos, personDetails) {
+export function addAndPushMarker(x, y, personDetails) {
+  const pos = new Point(x, y);
   // Position not in stage or cesure
   const key = JSON.stringify(pos);
   const dictMarkers = personDetails.isStage
@@ -69,26 +72,44 @@ export function addAndPushMarker(pos, personDetails) {
   if (!(key in dictMarkers)) {
     let marker = addMarker(pos, personDetails.isStage);
     marker.on("click", () => clickOnMarker(dictMarkers, key, marker));
-    dictMarkers[key] = [personDetails];
+    dictMarkers[key] = { marker, details: [personDetails] };
   } else {
-    dictMarkers[key].push(personDetails);
+    dictMarkers[key]["details"].push(personDetails);
+    const markerIcon = dictMarkers[key]["marker"].getIcon();
+    const markerHTML = markerIcon.options.html;
+
+    // On remplace a la main la valeur dans l'html du marker
+    const markerNumberStart = markerHTML.indexOf('<div class="marker-number');
+    const markerNumberEnd = markerHTML.indexOf("</div>", markerNumberStart);
+    const markerNumberSubstring = markerHTML.substring(
+      markerNumberStart,
+      markerNumberEnd + 6
+    );
+    const updatedMarkerHTML = markerHTML.replace(
+      markerNumberSubstring,
+      `<div class="marker-number ${
+        dictMarkers[key]["details"][0].isStage ? "stage" : "cesure"
+      }">${dictMarkers[key]["details"].length}</div>`
+    );
+    markerIcon.options.html = updatedMarkerHTML;
+    dictMarkers[key]["marker"].setIcon(markerIcon);
   }
 }
 
 function clickOnMarker(dictMarkers, key, marker) {
-  const joinedNames = Object.values(dictMarkers[key])
+  const joinedNames = Object.values(dictMarkers[key]["details"])
     .map((marker) => marker.name)
     .join(", ");
 
   const content = `
-    <h3>${dictMarkers[key][0].city} - ${
-    dictMarkers[key][0].isStage ? "Stage" : "Cesure"
+    <h3>${dictMarkers[key]["details"][0].city} - ${
+    dictMarkers[key]["details"][0].isStage ? "Stage" : "Cesure"
   }</h3>
     <p class="popup-desc">${joinedNames}</p>
   `;
 
   const _popup = L.popup({
-    className: dictMarkers[key][0].isStage ? "stage" : "cesure",
+    className: dictMarkers[key]["details"][0].isStage ? "stage" : "cesure",
   })
     .setLatLng(marker.getLatLng())
     .setContent(content)
