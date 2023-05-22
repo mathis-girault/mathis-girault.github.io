@@ -17,11 +17,11 @@ const iconOptions = {
 
 // Permet de retenir les marqueurs pour les cleans plus tard
 let dictStageMarkers = {};
-let dictCesureMarkers = {};
+let dictSemester1Markers = {};
 // La carte afficher sur l'écran
 let map = null;
 const stageMarkersGroup = L.layerGroup();
-const cesureMarkersGroup = L.layerGroup();
+const semester1MarkersGroup = L.layerGroup();
 
 // Initialise la map sur une position pos et un zoom z
 function getMap(p, z) {
@@ -54,7 +54,7 @@ function addMarker(pos, group) {
   if (group) {
     marker.addTo(stageMarkersGroup);
   } else {
-    marker.addTo(cesureMarkersGroup);
+    marker.addTo(semester1MarkersGroup);
   }
 
   return marker;
@@ -63,11 +63,11 @@ function addMarker(pos, group) {
 // Ajoute un marqueur sur la page et le met dans la liste des marqueurs
 export function addAndPushMarker(x, y, personDetails) {
   const pos = new Point(x, y);
-  // Position not in stage or cesure
+  // Position not in stage or semester1
   const key = JSON.stringify(pos);
   const dictMarkers = personDetails.isStage
     ? dictStageMarkers
-    : dictCesureMarkers;
+    : dictSemester1Markers;
 
   if (!(key in dictMarkers)) {
     let marker = addMarker(pos, personDetails.isStage);
@@ -88,7 +88,7 @@ export function addAndPushMarker(x, y, personDetails) {
     const updatedMarkerHTML = markerHTML.replace(
       markerNumberSubstring,
       `<div class="marker-number ${
-        dictMarkers[key]["details"][0].isStage ? "stage" : "cesure"
+        dictMarkers[key]["details"][0].isStage ? "stage" : "semester1"
       }">${dictMarkers[key]["details"].length}</div>`
     );
     markerIcon.options.html = updatedMarkerHTML;
@@ -103,13 +103,13 @@ function clickOnMarker(dictMarkers, key, marker) {
 
   const content = `
     <h3>${dictMarkers[key]["details"][0].city} - ${
-    dictMarkers[key]["details"][0].isStage ? "Stage" : "Cesure"
+    dictMarkers[key]["details"][0].isStage ? "Stage" : "semester1"
   }</h3>
     <p class="popup-desc">${joinedNames}</p>
   `;
 
   const _popup = L.popup({
-    className: dictMarkers[key]["details"][0].isStage ? "stage" : "cesure",
+    className: dictMarkers[key]["details"][0].isStage ? "stage" : "semester1",
   })
     .setLatLng(marker.getLatLng())
     .setContent(content)
@@ -118,11 +118,11 @@ function clickOnMarker(dictMarkers, key, marker) {
 
 export function displayMarkerGroup(group) {
   if (group) {
-    cesureMarkersGroup.removeFrom(map);
+    semester1MarkersGroup.removeFrom(map);
     stageMarkersGroup.addTo(map);
   } else {
     stageMarkersGroup.removeFrom(map);
-    cesureMarkersGroup.addTo(map);
+    semester1MarkersGroup.addTo(map);
   }
 }
 

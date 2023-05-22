@@ -1,6 +1,9 @@
 import * as mapFunctions from "./map.js";
 import * as databaseFunctions from "./database.js";
 
+const nameRegex = /^[A-Za-zÀ-ÖØ-öø-ÿ '-]+$/;
+const cityRegex = /^[a-zA-Z0-9À-ÖØ-öø-ÿ ',.-]+$/;
+
 window.addEventListener("DOMContentLoaded", () => {
   // Listen for clicks on buttons
   document.getElementById("add-user").onclick = () => {
@@ -23,7 +26,7 @@ window.addEventListener("DOMContentLoaded", () => {
 // Function to init the listeners for the menu items
 function initMenuEvents() {
   const stageRadio = document.getElementById("stage");
-  const cesureRadio = document.getElementById("cesure");
+  const semester1Radio = document.getElementById("semester1");
 
   // Event listener for the stage radio button
   stageRadio.addEventListener("change", function () {
@@ -32,9 +35,9 @@ function initMenuEvents() {
     }
   });
 
-  // Event listener for the cesure radio button
-  cesureRadio.addEventListener("change", function () {
-    if (cesureRadio.checked) {
+  // Event listener for the semester1 radio button
+  semester1Radio.addEventListener("change", function () {
+    if (semester1Radio.checked) {
       mapFunctions.displayMarkerGroup(false);
     }
   });
@@ -51,12 +54,25 @@ function handleSendForm(event) {
   if (nameInput.checkValidity() && cityInput.checkValidity() && isStageInput) {
     event.preventDefault(); // Prevent form submission
 
+    const name = nameInput.value.trim();
+    const city = cityInput.value.trim();
+
+    // Test data validation
+    if (!nameRegex.test(name)) {
+      window.alert(
+        "Invalid name input. Only alphabetic characters, spaces, and hyphens are allowed."
+      );
+      return;
+    }
+    if (!cityRegex.test(city)) {
+      window.alert(
+        "Invalid city input. Only alphanumeric characters, spaces, commas, periods, and hyphens are allowed."
+      );
+      return;
+    }
+
     // Add the user to the database
-    databaseFunctions.addUser(
-      nameInput.value.trim(),
-      cityInput.value.trim(),
-      isStageInput.value === "stage"
-    );
+    databaseFunctions.addUser(name, city, isStageInput.value === "stage");
 
     // Clear the form fields with delay
     setTimeout(() => {

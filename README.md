@@ -9,7 +9,7 @@ Vous disposez à l'écran d'une carte, et de marqueurs qui s'affichent sur la ca
 En haut à gauche un menu permet de choisir quels types de marqueurs vous voule voir, types correspondant à une temporalité.
 Pour l'instant il deux périodes sont possibles ;
  - Cet été : 'stage'
- - Le semestre prochain (premier semestre 2023-2024) : 'cesure'
+ - Le semestre prochain (premier semestre 2023-2024) : 'Semestre 1 3A'
 
 Un bouton sous le menu permet d'ajouter un marqueur, qui correspond à une personne, une position, et une temporalité.
 
