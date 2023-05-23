@@ -12,7 +12,7 @@ class Point {
 const iconOptions = {
   iconSize: [25, 35],
   iconAnchor: [11, 30],
-  popupAnchor: [0, -15],
+  popupAnchor: [0, 0],
 };
 const iconHtml = (iconUrl, number) => {
   return `<img src="${iconUrl}" width="${iconOptions.iconSize[0]}" height="${iconOptions.iconSize[1]}"/>

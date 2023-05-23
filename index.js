@@ -25,10 +25,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
 // Function to init the listeners for the menu items
 function initMenuEvents() {
+  // Event listener for the stage radio button
   const stageRadio = document.getElementById("stage");
   const semester1Radio = document.getElementById("semester1");
 
-  // Event listener for the stage radio button
   stageRadio.addEventListener("change", function () {
     if (stageRadio.checked) {
       mapFunctions.displayMarkerGroup(true);
@@ -43,6 +43,27 @@ function initMenuEvents() {
   });
 
   stageRadio.dispatchEvent(new Event("change"));
+
+  // Same on mobile devices
+  const stageButton = document.getElementById("mobile-stage");
+  const semester1Button = document.getElementById("mobile-semester1");
+  const selectedMarker = document.querySelector(".selected-marker");
+
+  stageButton.onclick = () => {
+    stageButton.classList.add("selected");
+    semester1Button.classList.remove("selected");
+    selectedMarker.style.transform = "translateX(0%)";
+    mapFunctions.displayMarkerGroup(true);
+  };
+
+  semester1Button.onclick = () => {
+    stageButton.classList.remove("selected");
+    semester1Button.classList.add("selected");
+    selectedMarker.style.transform = "translateX(100%)";
+    mapFunctions.displayMarkerGroup(false);
+  };
+
+  stageButton.dispatchEvent(new Event("click"));
 }
 
 function handleSendForm(event) {
