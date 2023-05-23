@@ -10,9 +10,13 @@ class Point {
 
 // Icon des marqueurs par defaut
 const iconOptions = {
-  iconSize: [20, 30],
+  iconSize: [25, 35],
   iconAnchor: [11, 30],
   popupAnchor: [0, -15],
+};
+const iconHtml = (iconUrl, number) => {
+  return `<img src="${iconUrl}" width="${iconOptions.iconSize[0]}" height="${iconOptions.iconSize[1]}"/>
+<div class="marker-number">${number}</div>`;
 };
 
 // Permet de retenir les marqueurs pour les cleans plus tard
@@ -27,11 +31,22 @@ const semester1MarkersGroup = L.layerGroup();
 function getMap(p, z) {
   map = L.map("map").setView([p.latitude, p.longitude], z);
 
-  const tiles = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  // Add classic map view
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
+    minZoom: 2,
     attribution:
-      '<a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
   }).addTo(map);
+
+  // Set max bounds for the map
+  const bounds = L.latLngBounds(L.latLng(-75, -180), L.latLng(90, 180));
+  map.setMaxBounds(bounds); // Set the maximum bounds for the map
+
+  // Disable dragging of the map outside the bounds
+  map.on("drag", function () {
+    map.panInsideBounds(bounds, { animate: false });
+  });
 }
 
 /**
@@ -45,8 +60,7 @@ function addMarker(pos, group) {
   const marker = L.marker([pos.latitude, pos.longitude], {
     icon: L.divIcon({
       className: "custom-marker",
-      html: `<img src="${iconUrl}" width="${iconOptions.iconSize[0]}" height="${iconOptions.iconSize[1]}"/>
-      <div class="marker-number"></div>`,
+      html: iconHtml(iconUrl, 1),
       iconAnchor: iconOptions.iconAnchor,
     }),
   });
@@ -75,23 +89,15 @@ export function addAndPushMarker(x, y, personDetails) {
     dictMarkers[key] = { marker, details: [personDetails] };
   } else {
     dictMarkers[key]["details"].push(personDetails);
-    const markerIcon = dictMarkers[key]["marker"].getIcon();
-    const markerHTML = markerIcon.options.html;
 
-    // On remplace a la main la valeur dans l'html du marker
-    const markerNumberStart = markerHTML.indexOf('<div class="marker-number');
-    const markerNumberEnd = markerHTML.indexOf("</div>", markerNumberStart);
-    const markerNumberSubstring = markerHTML.substring(
-      markerNumberStart,
-      markerNumberEnd + 6
+    // Changing new icon with full marker and new number
+    const markerIcon = dictMarkers[key]["marker"].getIcon();
+    markerIcon.options.html = iconHtml(
+      personDetails.isStage
+        ? "images/marker_red_full.png"
+        : "images/marker_blue_full.png",
+      dictMarkers[key]["details"].length
     );
-    const updatedMarkerHTML = markerHTML.replace(
-      markerNumberSubstring,
-      `<div class="marker-number ${
-        dictMarkers[key]["details"][0].isStage ? "stage" : "semester1"
-      }">${dictMarkers[key]["details"].length}</div>`
-    );
-    markerIcon.options.html = updatedMarkerHTML;
     dictMarkers[key]["marker"].setIcon(markerIcon);
   }
 }
