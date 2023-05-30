@@ -14,6 +14,20 @@ firebase.initializeApp(firebaseConfig);
 const firestore = firebase.firestore();
 const usersCollection = firestore.collection("users");
 
+firebase
+  .auth()
+  .signInAnonymously()
+  .then((userCredential) => {
+    // The user is signed in anonymously
+    const user = userCredential.user;
+    console.log("Anonymous user ID:", user.uid);
+  })
+  .catch((error) => {
+    // Handle any errors that occur during anonymous sign-in
+    const errorMessage = error.message;
+    console.error("Anonymous sign-in error:", errorMessage);
+  });
+
 // Retrieve all documents in the collection
 export function initDB() {
   usersCollection.get().then((querySnapshot) => {

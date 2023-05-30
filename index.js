@@ -20,6 +20,7 @@ window.addEventListener("DOMContentLoaded", () => {
   };
   document.getElementById("add-user-submit").onclick = (event) => {
     handleSendForm(event);
+    document.getElementById("form-container").style.zIndex = 0;
   };
   document.getElementById("add-user-form").onclick = (event) => {
     event.stopPropagation();
