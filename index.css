@@ -271,4 +271,9 @@ body,
     background-color: white;
     overflow: hidden;
   }
+
+  .form-button,
+  .mobile-menu-button {
+    -webkit-appearance: none;
+  }
 }
