@@ -271,4 +271,8 @@ body,
     background-color: white;
     overflow: hidden;
   }
+
+  input {
+    -webkit-appearance: none;
+  }
 }
