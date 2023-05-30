@@ -8,13 +8,22 @@ window.addEventListener("DOMContentLoaded", () => {
   // Listen for clicks on buttons
   document.getElementById("add-user").onclick = () => {
     document.getElementById("add-user-form").classList.add("selected");
+    document.getElementById("form-container").style.zIndex = 1999;
   };
   document.getElementById("annuler").onclick = () => {
     document.getElementById("add-user-form").classList.remove("selected");
+    document.getElementById("form-container").style.zIndex = 0;
+  };
+  document.getElementById("form-container").onclick = () => {
+    document.getElementById("add-user-form").classList.remove("selected");
+    document.getElementById("form-container").style.zIndex = 0;
   };
   document.getElementById("add-user-submit").onclick = (event) => {
     handleSendForm(event);
   };
+  document.getElementById("add-user-form").onclick = (event) => {
+    event.stopPropagation();
+  }
 
   // Initialize map and retreive data
   mapFunctions.initMap().then(() => {
