@@ -247,6 +247,7 @@ body,
     height: 35px;
     color: black;
     border-radius: 0;
+    background-color: rgb(223, 223, 223);
   }
 
   .mobile-menu-button.selected {
@@ -263,10 +264,11 @@ body,
     transition: transform 0.6s ease;
   }
 
-  #annuler,
-  #add-user-submit {
-    border-radius: 0;
+  .form-button {
     border: 1px solid rgb(94, 94, 94);
+    border-radius: 0;
     color: black;
+    background-color: white;
+    overflow: hidden;
   }
 }
