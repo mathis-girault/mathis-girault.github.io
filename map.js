@@ -60,7 +60,7 @@ function addMarker(pos, group) {
   const marker = L.marker([pos.latitude, pos.longitude], {
     icon: L.divIcon({
       className: "custom-marker",
-      html: iconHtml(iconUrl, 1),
+      html: iconHtml(iconUrl, ""),
       iconAnchor: iconOptions.iconAnchor,
     }),
   });
