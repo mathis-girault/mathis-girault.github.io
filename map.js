@@ -29,7 +29,7 @@ const semester1MarkersGroup = L.layerGroup();
 
 // Initialise la map sur une position pos et un zoom z
 function getMap(p, z) {
-  map = L.map("map", { zoomSnap: 0.1 }).setView([p.latitude, p.longitude], z);
+  map = L.map("map", { zoomSnap: 0 }).setView([p.latitude, p.longitude], z);
 
   // Add classic map view
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
