@@ -25,10 +25,30 @@ export function openDiscussion(city, isStage) {
     city,
     isStage,
     (discussion) => {
-      if (discussion) {
-        document.getElementById("discussion").value = discussion.text;
+      document.getElementById("discussion-info")
+
+      const discussionTextArea = document.getElementById("discussion");
+      const cursorPosition = discussionTextArea.selectionStart;
+      const oldText = discussionTextArea.value;
+
+      // Update disucssion text
+      discussionTextArea.value = discussion.text;
+
+      // Restore the cursor position
+      const firstDifferenceIndex = findFirstDifferenceIndex(
+        oldText,
+        discussionTextArea.value
+      );
+
+      if (firstDifferenceIndex < cursorPosition) {
+        const adjustedCursorPosition =
+          cursorPosition + discussionTextArea.value.length - oldText.length;
+        discussionTextArea.setSelectionRange(
+          adjustedCursorPosition,
+          adjustedCursorPosition
+        );
       } else {
-        console.log("Discussion does not exist");
+        discussionTextArea.setSelectionRange(cursorPosition, cursorPosition);
       }
     }
   );
@@ -63,4 +83,16 @@ function handleCloseDiscussion(unsubscribe) {
   document
     .getElementById("discussion")
     .removeEventListener("input", handleDiscussionInput);
+}
+
+function findFirstDifferenceIndex(oldText, newText) {
+  const minLength = Math.min(oldText.length, newText.length);
+
+  for (let i = 0; i < minLength; i++) {
+    if (oldText[i] !== newText[i]) {
+      return i;
+    }
+  }
+
+  return minLength;
 }
