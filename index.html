@@ -3,7 +3,10 @@
   <head>
     <title>Les BDE dans le monde</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
 
     <!-- Leaflet related -->
     <link
@@ -21,6 +24,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
     <!-- My page -->
     <script type="module" src="index.js"></script>
@@ -146,6 +150,18 @@
           </button>
         </div>
       </form>
+    </div>
+
+    <!-- Formulaire ajout nouvel utilisateur -->
+    <div id="discussion-background">
+      <div id="discussion-container">
+        <h1 id="discussion-title"></h1>
+        <p id="discussion-description">
+          <i>Petite zone de texte où vous pouvez écrire à votre guise !</i>
+        </p>
+        <textarea name="textarea" id="discussion"></textarea>
+        <input type="button" id="discussion-close" value="Fermer" />
+      </div>
     </div>
   </body>
 </html>

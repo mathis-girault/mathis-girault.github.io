@@ -7,25 +7,26 @@ const firebaseConfig = {
   storageBucket: "carte-bde-373d7.appspot.com",
   messagingSenderId: "981295285127",
   appId: "1:981295285127:web:bc0d3f7fda264ae3a40922",
+  databaseURL:
+    "https://carte-bde-373d7-default-rtdb.europe-west1.firebasedatabase.app",
 };
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const firestore = firebase.firestore();
 const usersCollection = firestore.collection("users");
+const discussionRef = firebase.database().ref("discussions");
 
 firebase
   .auth()
   .signInAnonymously()
   .then((userCredential) => {
     // The user is signed in anonymously
-    const user = userCredential.user;
-    console.log("Anonymous user ID:", user.uid);
+    console.log("Anonymous user ID:", userCredential.user.uid);
   })
   .catch((error) => {
     // Handle any errors that occur during anonymous sign-in
-    const errorMessage = error.message;
-    console.error("Anonymous sign-in error:", errorMessage);
+    console.error("Anonymous sign-in error:", error.message);
   });
 
 // Retrieve all documents in the collection
@@ -70,4 +71,46 @@ export function addUser(name, city, isStage) {
         console.error("Error adding user: ", error);
       });
   });
+}
+
+export function getDiscussion(city, isStage, callback) {
+  const myDiscussionRef = discussionRef
+    .child(city)
+    .child(isStage ? "stage" : "semester1");
+
+  myDiscussionRef.on("value", (snapshot) => {
+    if (snapshot.exists()) {
+      callback(snapshot.val());
+    } else {
+      console.log("Creating new discussion");
+
+      myDiscussionRef
+        .set({ text: "" })
+        .then(() => {
+          callback({ text: "" });
+        })
+        .catch((error) => {
+          console.error("Error creating new discussion:", error);
+          callback(null);
+        });
+    }
+  });
+
+  // Return the unsubscribe function to detach the listener when needed
+  return () => {
+    myDiscussionRef.off("value");
+  };
+}
+
+export function storeDiscussion(city, isStage, text) {
+  discussionRef
+    .child(city)
+    .child(isStage ? "stage" : "semester1")
+    .set({ text })
+    .then(() => {
+      console.log("Text updated successfully");
+    })
+    .catch((error) => {
+      console.log("Error updating text:", error);
+    });
 }

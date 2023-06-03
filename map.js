@@ -1,3 +1,5 @@
+import * as discussionFunctions from "./discussions.js";
+
 // class Point utiliser pour définir une coordonnée géographique
 class Point {
   latitude;
@@ -29,7 +31,7 @@ const semester1MarkersGroup = L.layerGroup();
 
 // Initialise la map sur une position pos et un zoom z
 function getMap(p, z) {
-  map = L.map("map", { zoomSnap: 0 }).setView([p.latitude, p.longitude], z);
+  map = L.map("map", { zoomSnap: 0.25 }).setView([p.latitude, p.longitude], z);
 
   // Add classic map view
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -112,6 +114,7 @@ function clickOnMarker(dictMarkers, key, marker) {
     dictMarkers[key]["details"][0].isStage ? "Stage" : "semester1"
   }</h3>
     <p class="popup-desc">${joinedNames}</p>
+    <input type="button" class="popup-button" value="Discussion" />
   `;
 
   const _popup = L.popup({
@@ -120,6 +123,16 @@ function clickOnMarker(dictMarkers, key, marker) {
     .setLatLng(marker.getLatLng())
     .setContent(content)
     .openOn(map);
+
+  _popup
+    .getElement()
+    .querySelector(".popup-button")
+    .addEventListener("click", () => {
+      discussionFunctions.openDiscussion(
+        dictMarkers[key]["details"][0].city,
+        dictMarkers[key]["details"][0].isStage
+      );
+    });
 }
 
 export function displayMarkerGroup(group) {
