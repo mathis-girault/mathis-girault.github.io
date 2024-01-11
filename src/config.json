@@ -1,0 +1,19 @@
+{
+    "UriInfos": {
+        "base": "images/",
+        "prefix": "marker_",
+        "extention": "_full",
+        "suffix": ".png"
+    },
+    "categories": {
+        "Stage AI": {
+            "color": "red"
+        },
+        "Semestre 9": {
+            "color": "blue"
+        },
+        "PFE": {
+            "color": "green"
+        }
+    }
+}

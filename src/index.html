@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Les BDE dans le monde</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+
+    <!-- My page -->
+    <link rel="icon" href="images/earth.png" type="image/x-icon" />
+  </head>
+
+  <body class="no-margin">
+    <!-- Gestion du menu -->
+    <nav id="navigation">
+      <div id="menu-container">
+        <div id="menu">
+          <h3>Marqueurs visibles :</h3>
+        </div>
+
+        <div id="mobile-menu">
+          <input
+            type="button"
+            class="mobile-menu-button"
+            id="mobile-stage"
+            value="Stage"
+          />
+          <input
+            type="button"
+            class="mobile-menu-button"
+            id="mobile-semester1"
+            value="Semestre 1 3A"
+          />
+          <div class="selected-marker"></div>
+        </div>
+
+        <div id="menu-helper">
+          <p id="menu-helper-text">
+            Cliquez sur un marqueur pour voir la liste des noms !
+          </p>
+        </div>
+      </div>
+
+      <input
+        type="button"
+        id="add-user"
+        class="menu-button"
+        title="Ajoutez votre marqueur"
+      />
+    </nav>
+
+    <!-- Gestion de la carte -->
+    <div id="map-container">
+      <div id='map'></div>
+    </div>
+
+    <!-- Formulaire ajout nouvel utilisateur -->
+    <div id="form-container">
+      <form id="add-user-form">
+        <h3 id="form-title">Ajoutez votre marqueur</h3>
+
+        <div class="form-group">
+          <label for="name">Ton blaze :</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="John Doe"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="city">La ville :</label>
+          <input
+            type="text"
+            id="city"
+            name="city"
+            placeholder="Ville, Pays"
+            required
+          />
+        </div>
+
+        <div class="form-group" id="form-drop-down">
+        </div>
+
+        <div id="form-submit">
+          <input
+            type="button"
+            id="annuler"
+            class="form-button"
+            value="Annuler"
+          />
+          <button type="submit" class="form-button" id="add-user-submit">
+            Ajouter
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Espace de discussion -->
+    <div id="discussion-background">
+      <div id="discussion-container">
+        <h1 id="discussion-title"></h1>
+        <p id="discussion-description">
+          <i>Petite zone de texte où vous pouvez écrire à votre guise !</i>
+        </p>
+        <textarea name="textarea" id="discussion"></textarea>
+        <input type="button" id="discussion-close" value="Fermer" />
+      </div>
+    </div>
+  </body>
+
+</html>

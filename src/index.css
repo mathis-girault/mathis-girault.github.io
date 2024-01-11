@@ -1,0 +1,374 @@
+/* ======================================================
+                    Pour la carte
+====================================================== */
+
+html,
+body,
+#map-container,
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+.leaflet-control-zoom {
+  display: none;
+}
+
+.leaflet-container {
+  background-color: rgb(171, 195, 146);
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  padding: 0;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  max-width: 180px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.leaflet-popup.stage-ai .leaflet-popup-content-wrapper,
+.leaflet-popup.stage-ai .leaflet-popup-tip,
+#discussion-close.stage-ai {
+  background-color: rgb(196, 131, 131);
+}
+
+.leaflet-popup.semestre-9 .leaflet-popup-content-wrapper,
+.leaflet-popup.semestre-9 .leaflet-popup-tip,
+#discussion-close.semestre-9 {
+  background-color: rgb(147, 180, 229);
+}
+
+.leaflet-popup.pfe .leaflet-popup-content-wrapper,
+.leaflet-popup.pfe .leaflet-popup-tip,
+#discussion-close.pfe {
+  background-color: rgb(147, 229, 151);
+}
+
+.leaflet-popup h3 {
+  margin: 10px 0 0 0;
+}
+
+.leaflet-popup p.popup-desc {
+  margin: 10px 0 0 0;
+}
+
+.custom-marker .marker-number {
+  position: relative;
+  top: -36px;
+  right: -2px;
+  font-size: 11px;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+.custom-marker {
+  top: -5px;
+  left: -6px;
+}
+
+.leaflet-popup-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-button {
+  margin-top: 10px;
+  align-self: center;
+  background-color: rgba(255, 255, 255, 0.25);
+  padding: 3px 10px 3px 10px;
+  border: 1px solid black;
+  color: black;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.32);
+}
+
+/* ======================================================
+                    Pour le menu
+====================================================== */
+
+#navigation {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+@media only screen and (min-width: 767px) {
+  #menu-container {
+    position: relative;
+    z-index: 2000;
+
+    display: flex;
+    flex-direction: column;
+
+    max-width: 200px;
+    background-color: white;
+
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+    border-color: black;
+    border-bottom-right-radius: 5px;
+
+    padding-bottom: 9px;
+    padding-right: 7px;
+  }
+}
+
+#menu {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  padding-bottom: 0px;
+}
+
+#menu h3 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.menu-item-container {
+  margin-bottom: 5px;
+}
+
+#menu-group {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#menu-helper-text {
+  background-color: rgb(179, 179, 179);
+  margin: 5px 5px 0 5px;
+  padding: 3px;
+  font-size: 15px;
+}
+
+#menu-helper-text:hover {
+  background-color: rgb(129, 129, 129);
+  cursor: help;
+}
+
+.menu-button {
+  position: relative;
+  z-index: 2000;
+
+  width: 56px;
+  height: 56px;
+  margin: 10px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.26);
+  transition: background-color 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer; /* add a cursor on hover */
+}
+
+#add-user {
+  background-image: url("./images/add-icon.png");
+  background-repeat: no-repeat;
+  background-size: 70%;
+  background-position: center;
+}
+
+/* ======================================================
+                Formulaire ajout marqueur
+====================================================== */
+
+#form-container {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+#add-user-form.selected {
+  display: flex;
+  z-index: 2000;
+  flex-direction: column;
+  background-color: rgb(171, 195, 146);
+  padding: 20px 30px 20px 30px;
+  border: 1px solid gray;
+  border-radius: 10px;
+}
+
+#add-user-form {
+  display: none;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+#form-submit {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 25px;
+}
+
+#isStage {
+  display: flex;
+  flex-direction: column;
+}
+
+#form-title {
+  margin-top: 0;
+}
+
+/* ======================================================
+                      Discussions
+====================================================== */
+
+#discussion-background {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2999;
+  width: 100%;
+  height: 100%;
+}
+
+#discussion-background.selected {
+  display: block;
+}
+
+#discussion-container {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 60%;
+  z-index: 3000;
+  background-color: rgb(239, 239, 239);
+  border-left: 1px solid rgb(114, 145, 105);
+}
+
+#discussion-container.selected {
+  display: flex;
+}
+
+#discussion-title {
+  margin-bottom: 0px;
+}
+
+#discussion {
+  height: 100%;
+  width: 96%;
+  background-color: white;
+  resize: none;
+}
+
+#discussion-close {
+  margin-bottom: 10px;
+  margin-top: 20px;
+  padding: 7px 30px 7px 30px;
+  width: fit-content;
+  color: black;
+  font-weight: bold;
+  border-radius: 10%;
+}
+
+/* ======================================================
+                    Mobile display
+====================================================== */
+
+#mobile-menu {
+  display: none;
+}
+
+@media only screen and (max-width: 767px) {
+  #menu-container {
+    position: relative;
+    z-index: 2000;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    min-width: 100%;
+    background-color: white;
+
+    border-bottom: 1px solid black;
+  }
+
+  #menu,
+  #menu-helper {
+    display: none;
+  }
+
+  #mobile-menu {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .mobile-menu-button {
+    width: 50%;
+    border: none;
+    height: 35px;
+    color: black;
+    border-radius: 0;
+    background-color: rgb(223, 223, 223);
+  }
+
+  .mobile-menu-button.selected {
+    z-index: 1;
+    background-color: rgb(115, 115, 115);
+  }
+
+  .selected-marker {
+    position: absolute;
+    z-index: 0;
+    height: 35px;
+    width: 50%;
+    background-color: rgb(115, 115, 115);
+    transition: transform 0.6s ease;
+  }
+
+  .form-button {
+    border: 1px solid rgb(94, 94, 94);
+    border-radius: 0;
+    color: black;
+    background-color: white;
+    overflow: hidden;
+  }
+
+  .form-button,
+  .mobile-menu-button {
+    -webkit-appearance: none;
+  }
+
+  #discussion-container {
+    top: unset;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    border-left: none;
+    border-top: 1px solid rgb(114, 145, 105);
+  }
+}
