@@ -1,4 +1,5 @@
-import "./index.css";
+import "./assets/styles/index.css";
+
 import Database from "./database";
 import MapManager from "./map";
 import MenuHandler from "./menu";

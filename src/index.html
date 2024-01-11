@@ -1,39 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <title>Les BDE dans le monde</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <meta
       name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
 
     <!-- My page -->
-    <link rel="icon" href="images/earth.png" type="image/x-icon" />
+    <link rel="icon" href="assets/images/earth.png" type="image/x-icon" />
   </head>
 
-  <body class="no-margin">
+  <body>
     <!-- Gestion du menu -->
     <nav id="navigation">
       <div id="menu-container">
-        <div id="menu">
+        <div id="web-menu">
           <h3>Marqueurs visibles :</h3>
         </div>
 
         <div id="mobile-menu">
-          <input
-            type="button"
-            class="mobile-menu-button"
-            id="mobile-stage"
-            value="Stage"
-          />
-          <input
-            type="button"
-            class="mobile-menu-button"
-            id="mobile-semester1"
-            value="Semestre 1 3A"
-          />
-          <div class="selected-marker"></div>
+          <div class="arrow" id="arrow-left"></div>
+          <div id="menu-items-container"></div>
+          <div class="arrow" id="arrow-right"></div>
         </div>
 
         <div id="menu-helper">
@@ -53,7 +43,7 @@
 
     <!-- Gestion de la carte -->
     <div id="map-container">
-      <div id='map'></div>
+      <div id="map"></div>
     </div>
 
     <!-- Formulaire ajout nouvel utilisateur -->
@@ -83,8 +73,7 @@
           />
         </div>
 
-        <div class="form-group" id="form-drop-down">
-        </div>
+        <div class="form-group" id="form-drop-down"></div>
 
         <div id="form-submit">
           <input
@@ -112,5 +101,4 @@
       </div>
     </div>
   </body>
-
 </html>

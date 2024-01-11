@@ -79,6 +79,24 @@ export function createDropDown(
   return select;
 }
 
+export function createMenuSlider(
+  rootDiv: HTMLElement,
+  menuItems: HTMLElement[],
+  defaultSelected: string
+): void {
+  for (const group of listCategories) {
+    // Create a new div
+    const newDiv = document.createElement("div");
+    newDiv.classList.add("menu-item");
+    group === defaultSelected && newDiv.classList.add("selected");
+    newDiv.id = `mobile-menu-${group.replace(" ", "-").toLowerCase()}`;
+    newDiv.textContent = group;
+
+    rootDiv.appendChild(newDiv);
+    menuItems.push(newDiv);
+  }
+}
+
 export function changeCursorPosition(
   textarea: HTMLTextAreaElement,
   oldText: string,

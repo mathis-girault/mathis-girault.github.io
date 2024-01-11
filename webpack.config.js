@@ -50,7 +50,7 @@ module.exports = {
       template: path.resolve(__dirname, "src", "index.html"),
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: "src/images", to: "images" }],
+      patterns: [{ from: "src/assets/images", to: "assets/images" }],
     }),
     new webpack.DefinePlugin({
       'process.env': {

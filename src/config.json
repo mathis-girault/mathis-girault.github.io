@@ -1,6 +1,6 @@
 {
     "UriInfos": {
-        "base": "images/",
+        "base": "assets/images/",
         "prefix": "marker_",
         "extention": "_full",
         "suffix": ".png"
