@@ -1,0 +1,18 @@
+@import url("./menu.css");
+
+:root {
+  --background-color: #EAF7CF;
+  --foreground-color: #ffffff;
+  --accent-color-1: #92828d;
+  --accent-color-2: #ceb5a7;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
