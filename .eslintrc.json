@@ -15,8 +15,8 @@
         "singleQuote": false,
         "semi": true,
         "trailingComma": "es5"
-        // "trailingComma": "none"
       }
-    ]
+    ],
+    "@typescript-eslint/non-nullable-type-assertion-style": "off"
   }
 }

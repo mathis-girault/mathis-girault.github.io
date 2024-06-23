@@ -4,5 +4,5 @@ import MenuHandler from "./menu";
 
 window.addEventListener("DOMContentLoaded", () => {
   const _menu = new MenuHandler();
-  _menu.init()
+  _menu.init();
 });

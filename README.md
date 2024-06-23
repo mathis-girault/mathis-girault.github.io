@@ -1,4 +1,4 @@
-# Mathis Girault ?
+# Mathis Girault
 
 [Site web](https://mathis-girault.github.io)  
 Ce site sert de menu pour diverses pages déployées
