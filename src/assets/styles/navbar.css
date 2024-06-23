@@ -2,6 +2,7 @@
   width: 100%;
   background-color: var(--accent-color-2);
   border-bottom: solid 2px black;
+  height: 80px;
 }
 
 #navbar-container {
@@ -38,4 +39,10 @@
   text-decoration: underline;
   transition: transform 0.1s ease-in-out;
   transform: scale(1.1);
+}
+
+@media screen and (width < 768px) {
+  #navbar-menu {
+    display: none;
+  }
 }

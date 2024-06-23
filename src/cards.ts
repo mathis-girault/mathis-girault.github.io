@@ -13,7 +13,7 @@ export default class CardsHandler {
   private readonly imagesPath: string = "/assets/images/";
 
   constructor() {
-    const rootDiv = document.getElementById("main-container");
+    const rootDiv = document.getElementById("cards-list");
     const cardTemplate = document.getElementById(
       "card-template"
     ) as HTMLTemplateElement;

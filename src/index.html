@@ -12,19 +12,21 @@
   </head>
 
   <body>
-    <!-- Menu -->
-    <nav id="navbar">
-      <div id="navbar-container">
-        <h1 id="navbar-title">Mathis Girault</h1>
-        <div id="navbar-menu">
-          <button id="nav-button-all" class="navbar-menu-button">All</button>
-          <button id="nav-button-socials" class="navbar-menu-button">Socials</button>
-          <button id="nav-button-projects" class="navbar-menu-button">Projects</button>
-        </div>
-        <button id="dark-mode-button">
-          <svg width="30" height="30" id="light-icon">
-            <circle cx="15" cy="15" r="6" fill="currentColor" />
-            <line
+    <div id="container">
+
+      <!-- Menu -->
+      <nav id="navbar">
+        <div id="navbar-container">
+          <h1 id="navbar-title">Mathis Girault</h1>
+          <div id="navbar-menu">
+            <button id="nav-button-all" class="navbar-menu-button">All</button>
+            <button id="nav-button-socials" class="navbar-menu-button">Socials</button>
+            <button id="nav-button-projects" class="navbar-menu-button">Projects</button>
+          </div>
+          <button id="dark-mode-button">
+            <svg width="30" height="30" id="light-icon">
+              <circle cx="15" cy="15" r="6" fill="currentColor" />
+              <line
               id="ray"
               stroke="currentColor"
               stroke-width="2"
@@ -33,13 +35,13 @@
               y1="1"
               x2="15"
               y2="4"
-            ></line>
-            <use href="#ray" transform="rotate(45 15 15)" />
-            <use href="#ray" transform="rotate(90 15 15)" />
-            <use href="#ray" transform="rotate(135 15 15)" />
-            <use href="#ray" transform="rotate(180 15 15)" />
-            <use href="#ray" transform="rotate(225 15 15)" />
-            <use href="#ray" transform="rotate(270 15 15)" />
+              ></line>
+              <use href="#ray" transform="rotate(45 15 15)" />
+              <use href="#ray" transform="rotate(90 15 15)" />
+              <use href="#ray" transform="rotate(135 15 15)" />
+              <use href="#ray" transform="rotate(180 15 15)" />
+              <use href="#ray" transform="rotate(225 15 15)" />
+              <use href="#ray" transform="rotate(270 15 15)" />
             <use href="#ray" transform="rotate(315 15 15)" />
           </svg>
 
@@ -50,23 +52,25 @@
               M 23, 5
               A 12 12 0 1 0 23, 25
               A 12 12 0 0 1 23, 5"
-            />
-          </svg>
-        </button>
-      </div>
-    </nav>
+              />
+            </svg>
+          </button>
+        </div>
+      </nav>
 
-    <!-- Main -->
-    <div id="main-container"></div>
+      <!-- Main -->
+      <div id="main-container">
+        <div id="cards-list"></div>
+      </div>
       
-    <!-- Card template -->
-    <template id="card-template">
-      <div class="card-container">
-        <h2 class="card-title"></h2>
-        <img class="card-icon" alt="Page Icon">
-        <button class="card-button">Go to</button>
-      </div>
-   </template>
-
+      <!-- Card template -->
+      <template id="card-template">
+        <div class="card-container">
+          <h2 class="card-title"></h2>
+          <img class="card-icon" alt="Page Icon">
+          <button class="card-button">Go to</button>
+        </div>
+      </template>
+    </div>
   </body>
 </html>

@@ -7,7 +7,7 @@ export default class NavBarHandler {
   private readonly CLASSNAME_SHOW_PROJECTS = "show-projects";
 
   constructor() {
-    const cardsRoot = document.getElementById("main-container");
+    const cardsRoot = document.getElementById("cards-list");
     if (cardsRoot === null) {
       console.error("Missing DOM element");
       return;
