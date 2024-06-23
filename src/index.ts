@@ -1,8 +1,11 @@
 import "./assets/styles/index.css";
 
-import MenuHandler from "./menu";
+import CardsHandler from "./cards";
+import NavBarHandler from "./navbar";
 
 window.addEventListener("DOMContentLoaded", () => {
-  const _menu = new MenuHandler();
-  _menu.init();
+  const _cards = new CardsHandler();
+  _cards.init();
+  const _navbar = new NavBarHandler();
+  _navbar.init();
 });

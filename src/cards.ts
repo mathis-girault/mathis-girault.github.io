@@ -1,18 +1,19 @@
-import menuItems from "./config.json";
+import config from "./config.json";
 
 interface CardData {
   title: string;
   URL: string;
   image: string;
+  category: "project" | "social";
 }
 
-export default class MenuHandler {
+export default class CardsHandler {
   private readonly root: HTMLElement;
   private readonly cardTemplate: HTMLTemplateElement;
   private readonly imagesPath: string = "/assets/images/";
 
   constructor() {
-    const rootDiv = document.getElementById("menu-container");
+    const rootDiv = document.getElementById("main-container");
     const cardTemplate = document.getElementById(
       "card-template"
     ) as HTMLTemplateElement;
@@ -25,9 +26,9 @@ export default class MenuHandler {
   }
 
   init(): void {
-    const websites = menuItems.pages;
+    const pages = config.pages as CardData[];
 
-    websites.forEach((card: CardData) => {
+    pages.forEach((card: CardData) => {
       this.createMenuCard(card);
     });
   }
@@ -38,6 +39,7 @@ export default class MenuHandler {
     const cardIcon = clone.querySelector(".card-icon") as HTMLImageElement;
     const cardLink = clone.querySelector(".card-button") as HTMLButtonElement;
 
+    clone.firstElementChild?.classList.add(`card-${card.category}`);
     cardTitle.textContent = card.title;
     cardIcon.src = this.imagesPath + card.image;
     cardLink.addEventListener("click", () => (location.href = card.URL));

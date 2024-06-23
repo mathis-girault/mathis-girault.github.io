@@ -1,5 +1,7 @@
-#menu-container {
+#main-container {
   display: flex;
+  flex-grow: 1;
+  flex-direction: row;
   width: 100%;
   height: 100%;
   background-color: var(--background-color);
@@ -9,7 +11,7 @@
 }
 
 .card-container {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
@@ -53,4 +55,12 @@
 .card-button:hover {
   transform: scale(1.15);
   transition: transform 0.2s ease-in-out;
+}
+
+#main-container.show-socials > .card-container.card-social {
+  display: flex;
+}
+
+#main-container.show-projects > .card-container.card-project {
+  display: flex;
 }

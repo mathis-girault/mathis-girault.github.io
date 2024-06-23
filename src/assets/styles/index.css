@@ -1,4 +1,5 @@
-@import url("./menu.css");
+@import url("./navbar.css");
+@import url("./cards.css");
 
 :root {
   --background-color: #EAF7CF;
@@ -7,12 +8,21 @@
   --accent-color-2: #ceb5a7;
 }
 
-html,
-body {
-  width: 100%;
+body.dark-mode {
+  --background-color: #1a1a1a;
+  --foreground-color: #fff;
+  --accent-color-1: #92828d;
+  --accent-color-2: #ceb5a7;
+}
+
+html {
   height: 100%;
+  width: 100%;
 }
 
 body {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
